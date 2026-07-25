@@ -19,7 +19,6 @@
             --ig-border: rgba(255, 255, 255, 0.15);
             --ig-text: #ffffff;
             --ig-text-secondary: rgba(255, 255, 255, 0.65);
-            --ig-gradient: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
         }
 
         body {
@@ -46,9 +45,34 @@
             z-index: 0;
         }
 
+        /* ===== ANIMATED ANIME GIRL (LEFT SIDE) ===== */
+        .anime-girl {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            height: 85vh;
+            max-height: 800px;
+            z-index: 1;
+            pointer-events: none;
+            animation: floatGirl 4s ease-in-out infinite;
+            filter: drop-shadow(0 0 30px rgba(0,0,0,0.4));
+        }
+
+        .anime-girl img {
+            height: 100%;
+            width: auto;
+            object-fit: contain;
+            object-position: bottom left;
+        }
+
+        @keyframes floatGirl {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-18px); }
+        }
+
         .container {
             position: relative;
-            z-index: 1;
+            z-index: 2;
             width: 100%;
             max-width: 700px;
             padding: 40px 20px;
@@ -131,18 +155,20 @@
             height: 40px;
             border: none;
             border-radius: 12px;
-            background: var(--ig-gradient);
+            background: linear-gradient(45deg, #000000, #434343, #8e8e8e, #434343, #000000);
+            background-size: 300% 300%;
+            animation: monoGradient 4s ease infinite;
             color: #fff;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.2s ease;
+            transition: transform 0.2s ease;
         }
 
         .search-btn:hover {
             transform: translateY(-50%) scale(1.08);
-            box-shadow: 0 4px 20px rgba(220, 39, 67, 0.4);
+            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.15);
         }
 
         .search-btn svg {
@@ -230,7 +256,9 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: var(--ig-gradient);
+            background: linear-gradient(45deg, #000000, #434343, #8e8e8e, #434343, #000000);
+            background-size: 300% 300%;
+            animation: monoGradient 4s ease infinite;
             opacity: 0.9;
             transition: opacity 0.2s;
         }
@@ -262,6 +290,18 @@
             color: rgba(255,255,255,0.5);
             text-decoration: none;
             font-weight: 600;
+        }
+
+        @keyframes monoGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @media (max-width: 1100px) {
+            .anime-girl {
+                display: none;
+            }
         }
 
         @media (max-width: 500px) {
@@ -302,6 +342,12 @@
     </style>
 </head>
 <body>
+    <!-- Animated Anime Girl on the Left -->
+    <!-- PASTE YOUR LINK BELOW inside the src="" quotes -->
+    <div class="anime-girl">
+        <img src="https://media1.tenor.com/m/Hfu2z7OMnOgAAAAd/chou-kaguya-hime-kaguya-hime.gif" alt="Anime Girl">
+    </div>
+
     <div class="container">
         <div class="clock-section">
             <div class="time" id="time">00:00</div>
